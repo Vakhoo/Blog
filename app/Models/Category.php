@@ -15,8 +15,8 @@ class Category extends Model
         return $this->hasMany(Post::class);
     }
 
-    // protected $fillable = [
-    //     'name',
-    //     "slug"
-    // ];
+    protected $fillable = [
+        'name',
+        "slug"
+    ];
 }
