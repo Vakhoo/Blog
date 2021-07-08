@@ -1,4 +1,4 @@
-@extends("layout")
+{{-- @extends("../layouts.layout")
 
 @section("content")
     @foreach($posts as $post)
@@ -20,3 +20,22 @@
         </article>
     @endforeach
 @endsection
+ --}}
+
+{{-- @extends("../layouts/layout") --}}
+<x-layout>
+{{-- @section("content") --}}
+        @include("../inc/header")
+
+        <main class="max-w-6xl mx-auto mt-6 lg:mt-20 space-y-6">
+            @if ($posts->count())
+                <x-posts-grid :posts="$posts" />
+                
+            @else
+                <p class="text-center">No data</p>
+            @endif
+
+            
+        </main>
+</x-layout>
+{{-- @endsection --}}
