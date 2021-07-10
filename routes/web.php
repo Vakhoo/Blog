@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\User;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,24 +19,8 @@ use Illuminate\Support\Facades\DB;
 |
 */
 
-Route::get('/', function () {
-
-    // DB::listen(function ($query) {
-    //         logger($query->sql, $query->bindings);
-    //     });
-     return view('posts', [
-         "posts"=>Post::latest()->get(),
-         "categories"=>Category::all()
-     ]);
-})->name("home");
-Route::get('/posts/{post:slug}', function (Post $post) {
-
-    // dd($post->category);
-
-    return view('post', [
-        "post"=>$post
-    ]);
-})->name("post");
+Route::get('/',[PostController::class, "index"])->name("home");
+Route::get('/posts/{post:slug}', [PostController::class, "show"])->name("post");
 
 Route::get("/categories/{category:slug}", function(Category $category){
     return view('posts', [
