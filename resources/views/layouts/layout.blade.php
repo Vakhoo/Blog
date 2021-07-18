@@ -1,4 +1,4 @@
-<!doctype html>
+{{-- <!doctype html>
 
 <title>Laravel From Scratch Blog</title>
 <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
@@ -54,3 +54,4 @@
         </footer>
     </section>
 </body>
+ --}}
