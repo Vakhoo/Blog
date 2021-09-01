@@ -6,11 +6,13 @@
         </button>
     </x-slot>
     {{-- {{isset($currentCategory) && $currentCategory->id==$category->id ? "bg-blue-500 text-white" : ""}} --}}
-    <x-dropdown-item href="/" :active="request()->routeIs('home')">All</x-dropdown-item>
+{{--    @dd(request()->getQueryString())--}}
+    <x-dropdown-item href="/?{{http_build_query(request()->except('category', 'page'))}}" :active="request()->getQueryString() === null">All</x-dropdown-item>
     @foreach ($categories as $category)
         <x-dropdown-item
-        href="/?category={{$category->slug}}&{{http_build_query(request()->except('category'))}}"
-         {{-- :active="isset($currentCategory) && $currentCategory->id==$category->id" --}}
+        href="/?category={{$category->slug}}&{{http_build_query(request()->except('category', 'page'))}}"
+        :active="(isset($currentCategory) && $currentCategory->id === $category->id)"
+{{--          :active="isset($currentCategory) && $currentCategory->id==$category->id" --}}
         {{-- :active="(isset($currentCategory) && $currentCategory->id === $category->id)" --}}
 {{--                            :active="request()->is('categories/'.$category->slug)"--}}
 {{--                            :active="isset($currentCategory) ? false : request()->routeIs('home')"--}}
